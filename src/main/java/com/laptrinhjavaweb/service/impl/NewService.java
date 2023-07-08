@@ -5,7 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.laptrinhjavaweb.dao.INewDAO;
-import com.laptrinhjavaweb.dao.impl.NewDAO;
 import com.laptrinhjavaweb.model.NewModel;
 import com.laptrinhjavaweb.service.INewService;
 
@@ -21,8 +20,8 @@ public class NewService implements INewService{
 	@Override
 	public NewModel save(NewModel newModel) {
 		Long newId = newDao.save(newModel);
-		System.out.println(newId);
-		return null;
+		
+		return newDao.findOne(newId);
 	}
 
 

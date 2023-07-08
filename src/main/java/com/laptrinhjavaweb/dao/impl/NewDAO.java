@@ -1,10 +1,5 @@
 package com.laptrinhjavaweb.dao.impl;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import com.laptrinhjavaweb.dao.INewDAO;
@@ -15,15 +10,14 @@ public class NewDAO extends AbstractDAO<NewModel> implements INewDAO {
 
 	@Override
 	public List<NewModel> findByCategoryId(Long categoryId) {
-
-		String sql = "select * from news where categoryid =?";
-		// Open connection
-
+		String sql = "SELECT * FROM news WHERE categoryid = ?";
 		return query(sql, new NewMapper(), categoryId);
-
 	}
-
-//	public static void main(String[] args) {
+private List<NewModel> findAll() {
+	String sql ="select * from news where id =?";
+	return query(sql, new NewMapper(),1L);
+}
+	public static void main(String[] args) {
 //		String title = "Bài viết 9";
 //		String content = "bài viết 9";
 //		Long categoryId = 1L;
@@ -31,17 +25,28 @@ public class NewDAO extends AbstractDAO<NewModel> implements INewDAO {
 //		model.setTitle(title);
 //		model.setContent(content);
 //		model.setCategoryid(categoryId);
-//		NewDAO dao = new NewDAO();
-//		System.out.println(dao.save(model));
-//		;
-//	}
+	NewDAO dao = new NewDAO();
+	NewModel list = dao.findOne(1L);
+		
+			System.out.println(list);
+		
 
+	}
+	
 	@Override
 	public Long save(NewModel newModel) {
 		String sql = "insert into news(title,content,categoryid) values(?,?,?);";
 
 		return insert(sql, newModel.getTitle(), newModel.getContent(), newModel.getCategoryid());
 
+	}
+
+	@Override
+	public NewModel findOne(Long id) {
+
+		String sql = "SELECT * FROM news WHERE id = ?";
+		List<NewModel> news = query(sql, new NewMapper(), id);
+		return news.isEmpty() ? null : news.get(0);
 	}
 
 }

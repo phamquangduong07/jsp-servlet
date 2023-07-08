@@ -48,6 +48,10 @@ public class NewModel extends AbstractModel{
 	public void setContent(String content) {
 		this.content = content;
 	}
+	@Override
+	public String toString() {
+		return "NewModel [title=" + title + ", categoryid=" + categoryid + ", content=" + content + "]";
+	}
 	
 	
 

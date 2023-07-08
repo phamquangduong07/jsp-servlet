@@ -38,9 +38,8 @@ public class AbstractDAO<T> implements GennericDAO<T> {
 		try {
 			connection = getConnection();
 			statement = connection.prepareStatement(sql);
-			// set parameter
+			setParameter(statement, parameters);
 			resultSet = statement.executeQuery();
-			setParameter(statement,parameters);
 			while (resultSet.next()) {
 				results.add(rowMapper.mapRow(resultSet));
 			}
@@ -58,7 +57,6 @@ public class AbstractDAO<T> implements GennericDAO<T> {
 				if (resultSet != null) {
 					resultSet.close();
 				}
-
 			} catch (SQLException e) {
 				return null;
 			}

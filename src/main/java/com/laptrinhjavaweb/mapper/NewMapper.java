@@ -13,7 +13,8 @@ public class NewMapper implements RowMapper<NewModel> {
 			NewModel news = new NewModel();
 			news.setId(resultSet.getLong("id"));
 			news.setTitle(resultSet.getString("title"));
-
+			news.setContent(resultSet.getString("content"));
+			news.setCategoryid(resultSet.getLong("categoryid"));
 			return news;
 		} catch (SQLException e) {
 			return null;
