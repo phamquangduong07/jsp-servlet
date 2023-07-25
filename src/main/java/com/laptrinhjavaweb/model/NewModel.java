@@ -1,6 +1,6 @@
 package com.laptrinhjavaweb.model;
 
-public class NewModel extends AbstractModel{
+public class NewModel extends AbstractModel<NewModel>{
 	/*
 	 *   id bigint NOT NULL PRIMARY KEY auto_increment,
   title VARCHAR(255) NULL,
@@ -18,6 +18,7 @@ public class NewModel extends AbstractModel{
 	private String shortdescription;
 	private Long categoryid;
 	private String content;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -52,6 +53,7 @@ public class NewModel extends AbstractModel{
 	public String toString() {
 		return "NewModel [title=" + title + ", categoryid=" + categoryid + ", content=" + content + "]";
 	}
+
 	
 	
 

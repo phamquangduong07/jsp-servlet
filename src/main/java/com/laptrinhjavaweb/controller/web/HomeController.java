@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.laptrinhjavaweb.model.NewModel;
 import com.laptrinhjavaweb.service.ICategoryService;
 import com.laptrinhjavaweb.service.INewService;
 
@@ -19,7 +18,6 @@ public class HomeController extends HttpServlet {
 
 	@Inject
 	private ICategoryService categoryService;
-
 	@Inject
 	INewService newService;
 	private static final long serialVersionUID = 2686801510274002166L;

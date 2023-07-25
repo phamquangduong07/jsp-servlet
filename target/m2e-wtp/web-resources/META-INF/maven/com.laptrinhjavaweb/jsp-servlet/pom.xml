@@ -20,7 +20,6 @@
 		<maven.compiler.target>19</maven.compiler.target>
 	</properties>
 
-
 	<dependencies>
 		<!-- JSP API-->
 		<dependency>
@@ -57,7 +56,7 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-		
+
 		<!-- json -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -86,7 +85,7 @@
 			<version>1.9.13</version>
 		</dependency>
 		<!--end json -->
-		
+
 	</dependencies>
 
 	<build>
