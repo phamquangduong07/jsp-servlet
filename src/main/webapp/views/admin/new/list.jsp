@@ -8,8 +8,9 @@
 <title>Danh sách bài viết</title>
 </head>
 <body>
-<form action="<c:url value='/admin-new'/>" id="formSubmit" method="get">
+
 	<div class="main-content">
+	<form action="<c:url value='/admin-new'/>" id="formSubmit" method="get">
 		<div class="main-content-inner">
 			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 				<ul class="breadcrumb">
@@ -46,7 +47,9 @@
 									</table>
 									  <ul class="pagination" id="pagination"></ul>
 									  <input type="hidden" value="" id="page" name ="page">
-								 <input type="hidden" value="" id="maxPageItems" name ="maxPageItems">
+								 <input type="hidden" value="" id="maxPageItem" name ="maxPageItem">
+								 <input type="hidden" value="" id="sortName" name ="sortName">
+								  <input type="hidden" value="" id="sortBy" name ="sortBy">
 								</div>
 							</div>
 						</div>
@@ -54,25 +57,31 @@
 				</div>
 			</div>
 		</div>
+		</form>
 	</div>
 	
-	</form>
+	
 	<!-- /.main-content -->
 	 <script type="text/javascript">
-	 var totalPages =${model.totalPage};
-	 var visiblePages =${model.maxPageItems};
-		var currentPage =${model.page};
-    $(function () {
-        window.pagObj = $('#pagination').twbsPagination({
-            totalPages: totalPages,
-            visiblePages: 2,
-            startPage: currentPage,
-            onPageClick: function (event, page) {
-            	$('#page').val(page);
-                $('#formSubmit').submit();
-            }
-        });
-    });
+	 var totalPages = ${model.totalPage};
+		var currentPage = ${model.page};
+		var limit = 2;
+		$(function () {
+			window.pagObj = $('#pagination').twbsPagination({
+				totalPages: totalPages,
+				visiblePages: 10,
+				startPage: currentPage,
+				onPageClick: function (event, page) {
+					if (currentPage != page) {
+						$('#maxPageItem').val(limit);
+						$('#page').val(page);
+						$('#sortName').val("title");
+						$('#sortBy').val("desc");
+						$('#formSubmit').submit();
+					}
+				}
+			});
+		});
 </script>
 </body>
 </html>

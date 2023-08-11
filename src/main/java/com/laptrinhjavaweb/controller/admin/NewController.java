@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
 import com.laptrinhjavaweb.model.NewModel;
+import com.laptrinhjavaweb.paging.PageRequest;
+import com.laptrinhjavaweb.paging.Pageble;
 import com.laptrinhjavaweb.service.INewService;
+import com.laptrinhjavaweb.sort.Sorter;
+import com.laptrinhjavaweb.utils.FormUtil;
 
-
-@WebServlet(urlPatterns = {"/admin-new" })
-public class NewController extends HttpServlet{
-
+@WebServlet(urlPatterns = { "/admin-new" })
+public class NewController extends HttpServlet {
 
 	/**
 	 * 
@@ -28,8 +30,24 @@ public class NewController extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	NewModel model = new NewModel();
-	model.setListResult(newService.findAll());
+		// totalPage = totalItem/maxPageItem
+		NewModel model = FormUtil.toModel(NewModel.class, request);
+//		String pageStr = request.getParameter("page");
+//		String maxPageItemStr =request.getParameter("maxPageItem");
+//		if(pageStr!=null) {
+//			model.setPage(Integer.parseInt(pageStr));
+//		}else {
+//			model.setPage(1);
+//		}
+//		if(maxPageItemStr!=null) {
+//			model.setMaxPageItem(Integer.parseInt(maxPageItemStr));
+//		}
+//		Integer offset = (model.getPage()-1)*model.getMaxPageItem();
+		Pageble pageble = new PageRequest(model.getPage(), model.getMaxPageItem(),
+				new Sorter(model.getSortName(), model.getSortBy()));
+		model.setListResult(newService.findAll(pageble));
+		model.setTotalItem(newService.getTotalItem());
+		model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 		request.setAttribute(SystemConstant.MODEL, model);
 		RequestDispatcher rd = request.getRequestDispatcher("/views/admin/new/list.jsp");
 		rd.forward(request, response);

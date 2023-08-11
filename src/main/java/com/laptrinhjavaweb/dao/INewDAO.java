@@ -3,6 +3,7 @@ package com.laptrinhjavaweb.dao;
 import java.util.List;
 
 import com.laptrinhjavaweb.model.NewModel;
+import com.laptrinhjavaweb.paging.Pageble;
 
 public interface INewDAO  extends GennericDAO<NewModel>{
 	NewModel findOne(Long id);
@@ -10,5 +11,6 @@ public interface INewDAO  extends GennericDAO<NewModel>{
 	Long save(NewModel newModel);
 	void update(NewModel newModel);
 	void delete(long id);
-	List<NewModel> findAll();
+	List<NewModel> findAll(Pageble pageble);
+	int getTotalItem();
 }
