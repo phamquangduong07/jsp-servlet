@@ -11,10 +11,10 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.laptrinhjavaweb.dao.GennericDAO;
+import com.laptrinhjavaweb.dao.GenericDAO;
 import com.laptrinhjavaweb.mapper.RowMapper;
 
-public class AbstractDAO<T> implements GennericDAO<T> {
+public class AbstractDAO<T> implements GenericDAO<T> {
 
 	public Connection getConnection() {
 		try {

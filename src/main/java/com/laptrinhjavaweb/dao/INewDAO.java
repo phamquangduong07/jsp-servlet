@@ -5,7 +5,7 @@ import java.util.List;
 import com.laptrinhjavaweb.model.NewModel;
 import com.laptrinhjavaweb.paging.Pageble;
 
-public interface INewDAO  extends GennericDAO<NewModel>{
+public interface INewDAO  extends GenericDAO<NewModel>{
 	NewModel findOne(Long id);
 	List<NewModel> findByCategoryId(Long categoryId);
 	Long save(NewModel newModel);
