@@ -12,6 +12,7 @@
 		<pattern>/admin*</pattern>
 	</decorator>
 
+	<!--Tự động apply page: web.jsp zô-->
 	<decorator name="web" page="web.jsp">
 		<pattern>/*</pattern>
 	</decorator>

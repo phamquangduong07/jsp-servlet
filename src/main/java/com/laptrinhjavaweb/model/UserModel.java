@@ -20,6 +20,19 @@ public class UserModel extends AbstractModel<UserModel>{
 	private int status;
 	private Long roleId;
 	private RoleModel role= new RoleModel();
+
+
+	@Override
+	public String toString() {
+		return "UserModel{" +
+				"userName='" + userName + '\'' +
+				", fullName='" + fullName + '\'' +
+				", password='" + password + '\'' +
+				", status=" + status +
+				", role=" + role +
+				'}';
+	}
+
 	//Model là nơi luân chuyển dữ liệu
 	public String getUserName() {
 		return userName;
